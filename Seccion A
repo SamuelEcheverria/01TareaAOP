@@ -1,0 +1,62 @@
+//Código fuente de la sección A
+
+//Ejemplo que aplica Adapter:
+
+// Interfaz que la computadora entiende (el Target)
+public interface USB {
+    void connectWithUSB();
+}
+
+// Clase que representa la tarjeta de memoria (Adaptee)
+public class MemoryCard {
+    public void readData() {
+        System.out.println("Leyendo datos desde la tarjeta de memoria");
+    }
+}
+
+// Adaptador que convierte la tarjeta en un dispositivo USB
+public class CardReader implements USB {
+    private MemoryCard memoryCard;
+
+    public CardReader(MemoryCard memoryCard) {
+        this.memoryCard = memoryCard;
+    }
+
+    @Override
+    public void connectWithUSB() {
+        System.out.println("Adaptador conectado por USB.");
+        memoryCard.readData();
+    }
+}
+
+// Clase que representa una computadora (Client)
+public class Computer {
+    public void transferData(USB device) {
+        System.out.println("Conectando dispositivo USB a la computadora");
+        device.connectWithUSB();
+
+//Ejemplo que aplica Singleton
+
+public class USBManager {
+    private static USBManager instance;
+
+    private USBManager() {
+        System.out.println("USBManager inicializado.");
+    }
+
+    public static USBManager getInstance() {
+        if (instance == null) {
+            instance = new USBManager();
+        }
+        return instance;
+    }
+
+    public void detectDevice(USB device) {
+        System.out.println("Detectando dispositivo USB...");
+        device.connectWithUSB();
+    }
+}
+
+        System.out.println("Transferencia de datos completada.\n");
+    }
+}
